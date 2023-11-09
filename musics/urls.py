@@ -18,12 +18,10 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 
-from musics.base import views
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
-    path('', views.home, name='home'),
-    path('signup/', views.sign_up, name='signup'),
+    path('', include('musics.base.urls'))
 ]
 
 if settings.DEBUG:
