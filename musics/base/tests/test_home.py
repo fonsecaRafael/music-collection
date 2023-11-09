@@ -1,5 +1,4 @@
 import pytest
-from django.test import Client
 from django.urls import reverse
 
 from musics.django_assertions import assert_contains
@@ -7,7 +6,7 @@ from musics.django_assertions import assert_contains
 
 @pytest.fixture
 def response(client):
-    response = client.get(reverse('home'))
+    response = client.get(reverse('base:home'))
     return response
 
 
@@ -20,4 +19,4 @@ def test_title(response):
 
 
 def test_home_link(response):
-    assert_contains(response, f'href="{reverse('home')}">Music Collection</a>')
+    assert_contains(response, f'href="{reverse('base:home')}">Music Collection</a>')
