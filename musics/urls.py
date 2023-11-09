@@ -14,8 +14,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from musics.base import views
 
@@ -24,3 +25,7 @@ urlpatterns = [
     path('', views.home),
     path('signup/', views.sign_up),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns.append(path('__debug__/', include(debug_toolbar.urls)))
