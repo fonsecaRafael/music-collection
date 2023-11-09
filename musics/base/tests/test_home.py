@@ -11,3 +11,8 @@ def test_status_code(client: Client):
 def test_title(client: Client):
     response = client.get('/')
     assert_contains(response, '<title>Music Collection</title>')
+
+
+def test_home_link(client: Client):
+    response = client.get('/')
+    assert_contains(response, 'href="/">Music Collection</a>')
