@@ -26,7 +26,7 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault("is_superuser", False)
         return self._create_user(full_name, username, password, **extra_fields)
 
-    def create_superuser(self, full_name, username, password=None, **extra_fields):
+    def create_superuser(self, full_name, username, password, **extra_fields):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
 
@@ -46,7 +46,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     full_name = models.CharField(_("full name"), max_length=150, blank=False)
     username = models.CharField(_("user name"), max_length=32, blank=False, unique=True)
-    password = models.EmailField(_("email address"), blank=False)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(
         _("staff status"),
