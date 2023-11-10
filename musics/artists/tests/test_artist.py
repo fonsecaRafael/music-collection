@@ -4,7 +4,7 @@ from django.urls import reverse
 
 @pytest.fixture
 def response(client):
-    return client.get(reverse('artists:artist'), args=('15',))
+    return client.get(reverse('artists:artist', args=('15',)))
 
 
 def test_status_code(response):
