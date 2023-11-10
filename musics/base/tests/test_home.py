@@ -15,7 +15,7 @@ def test_status_code(response):
 
 
 def test_title(response):
-    assert_contains(response, '<title>Music Collection</title>')
+    assert_contains(response, '<title>MC - Home</title>')
 
 
 def test_home_link(response):
