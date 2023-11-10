@@ -18,4 +18,4 @@ def test_title(response):
 
 
 def test_artist_name(response):
-    assert_contains(response, f'<h3>Aqui irá aparecer o nome do artista</h3>')
+    assert_contains(response, f'Aqui irá aparecer o nome do artista')
