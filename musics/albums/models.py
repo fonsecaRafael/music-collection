@@ -7,6 +7,5 @@ class Album(models.Model):
     name = models.CharField(max_length=32)
     year = models.DateField()
 
-
     def get_absolute_url(self):
         return reverse('albums:')
