@@ -1,7 +1,7 @@
 {% extends 'base/base.html'%}
 {% load static %}
 
-{% block title %}MC - Detais{% endblock title %}
+{% block title %}MC - Details{% endblock title %}
 
 {% block description %}"Music Collection Artist details page{% endblock description %}
 
@@ -9,9 +9,13 @@
     <div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="text-center">
-					{{artist.id}}
+				<h3 class="text-center mt-4 mb-3">
+					{{artist.json.0.name}}
 				</h3>
+
+				{% with "https://twitter.com/"|add:artist.json.0.twitter as artist_twitter %}
+				<h4>Twitter: <a href="{{artist_twitter}}" target="_blank">{{artist.json.0.twitter}}</a></h4>
+				{% endwith %}
 			</div>
 		</div>
 	</div>
