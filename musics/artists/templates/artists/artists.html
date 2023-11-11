@@ -11,9 +11,15 @@
 			<div class="col-md-12">
 				<h1 class="text-center mt-4 mb-3">Artists</h1>
 				<ol>
-					{% for artist in artists.json %}
-						{% for detail in artist %}
-							<li>{{ detail.name }} &emsp; Twitter: {{ detail.twitter}}</li>
+					{% for artists in response.json %}
+						{% for artist in artists %}
+							{% with "https://twitter.com/"|add:artist.twitter as artist_twitter %}
+								<li>
+									<a href="{% url 'artists:artist' artist.id %}">{{ artist.name }}</a>
+									&emsp;
+									<a href="{{artist_twitter}}" target="_blank">{{artist.twitter}}</a>
+								</li><br>
+							{% endwith %}
 						{% empty %}
 							No artist found
 						{% endfor %}
@@ -22,5 +28,4 @@
 			</div>
 		</div>
 	</div>
-<!--{{response}}-->
 {% endblock body %}

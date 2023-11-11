@@ -13,4 +13,4 @@ def artists(request):
     response = requests.get(url, headers=headers)
     artists = response.json()
 
-    return render(request, 'artists/artists.html', context={'artists': artists})
+    return render(request, 'artists/artists.html', context={'response': artists})
