@@ -7,5 +7,9 @@ def artist(request, artist_id):
 
 
 def artists(request):
-    artists = {'1': 'artista 1', '2': 'artista 2', '3': 'artista 3',}
+    artists = [
+        {'name': 'artista 1'},
+        {'name': 'artista 2'},
+        {'name': 'artista 3'},
+    ]
     return render(request, 'artists/artists.html', context={'artists': artists})
