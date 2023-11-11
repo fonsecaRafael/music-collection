@@ -11,14 +11,16 @@
 			<div class="col-md-12">
 				<h1 class="text-center mt-4 mb-3">Artists</h1>
 				<ol>
-					{% for artist in artists %}
-						<li>{{ artist.name | default:'Artist name not found' }}</li>
-
-					{% empty %}
-						No artist found
+					{% for artist in artists.json %}
+						{% for detail in artist %}
+							<li>{{ detail.name }} &emsp; Twitter: {{ detail.twitter}}</li>
+						{% empty %}
+							No artist found
+						{% endfor %}
 					{% endfor %}
 				</ol>
 			</div>
 		</div>
 	</div>
+<!--{{response}}-->
 {% endblock body %}

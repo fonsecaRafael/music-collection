@@ -1,3 +1,4 @@
+import requests
 from django.shortcuts import render
 
 
@@ -7,9 +8,9 @@ def artist(request, artist_id):
 
 
 def artists(request):
-    artists = [
-        {'name': 'artista 1'},
-        {'name': 'artista 2'},
-        {'name': 'artista 3'},
-    ]
+    url = 'https://europe-west1-madesimplegroup-151616.cloudfunctions.net/artists-api-controller'
+    headers = {'Authorization': 'Basic ZGV2ZWxvcGVyOlpHVjJaV3h2Y0dWeQ =='}
+    response = requests.get(url, headers=headers)
+    artists = response.json()
+
     return render(request, 'artists/artists.html', context={'artists': artists})
