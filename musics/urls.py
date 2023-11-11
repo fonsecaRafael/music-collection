@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('', include('musics.base.urls')),
     path('artists/', include('musics.artists.urls')),
+    path('albums/', include('musics.albums.urls')),
 ]
 
 if settings.DEBUG:
