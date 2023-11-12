@@ -8,4 +8,4 @@ class Album(models.Model):
     year = models.DateField()
 
     def get_absolute_url(self):
-        return reverse('albums:')
+        return reverse('albums:albums')

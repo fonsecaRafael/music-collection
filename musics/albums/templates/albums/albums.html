@@ -3,7 +3,7 @@
 
 {% block title %}MC - Albums{% endblock title %}
 
-{% block description %}"Music Collection Albums List page{% endblock description %}
+{% block description %}Music Collection Albums List page{% endblock description %}
 
 {% block body %}
 <div class="container-fluid">
@@ -28,7 +28,7 @@
 						<td class="align-middle">{{album.artist}}</td>
 						<td class="align-middle">{{album.year.year}}</td>
 						<td>
-							<a href="{% url 'base:home' %}" class="btn btn-sm btn-link" role="button" aria-pressed="true">
+							<a href="{% url 'albums:album' %}" class="btn btn-sm btn-link" role="button" aria-pressed="true">
 							<img alt="Bootstrap Image Preview" src="{% static 'img/edit.png' %}">
 							</a>
 						</td>
