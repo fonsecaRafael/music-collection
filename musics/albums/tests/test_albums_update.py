@@ -1,14 +1,14 @@
 import pytest
 from django.urls import reverse
+from model_mommy import mommy
 
 from musics.albums.models import Album
 
 
 @pytest.fixture
-def create_album(db):
-    album = Album(artist='Rihanna', name='Loud', year='2010-01-01')
-    album.save()
-    return album
+def create_albums(db):
+    """Model-mommy library makes <3> instances of Album with random values each time it runs."""
+    return mommy.make(Album, 3)
 
 
 @pytest.fixture

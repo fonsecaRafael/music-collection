@@ -15,6 +15,7 @@ requests = "*"
 
 [dev-packages]
 flake8 = "*"
+model-mommy = "*"
 
 [requires]
 python_version = "3.12"
