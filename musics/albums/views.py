@@ -4,7 +4,7 @@ from musics.albums.forms import AlbumForm
 from musics.albums.models import Album
 
 
-def create_album(request):
+def create(request):
     if request.method == "POST":
         album_form = AlbumForm(request.POST)
         if album_form.is_valid():
@@ -15,7 +15,7 @@ def create_album(request):
                 pass
     else:
         album_form = AlbumForm()
-    return render(request, 'albums/create_album.html', {'album_form': album_form})
+    return render(request, 'albums/create.html', {'album_form': album_form})
 
 
 # Recovery
@@ -29,16 +29,16 @@ def album(request, album_id):
     return render(request, 'albums/album.html', context={'album': album})
 
 
-def update_album(request, id):
+def update(request, id):
     album = Album.objects.get(id=id)
     album_form = AlbumForm(request.POST, instance=album)
     if album_form.is_valid():
         album_form.save()
         return redirect(Album)
-    return render(request, 'albums/update_album.html', {'album': album})
+    return render(request, 'albums/update.html', {'album': album})
 
 
-def delete_album(request, id):
+def delete(request, id):
     album = Album.objects.get(id=id)
     album.delete()
     return redirect(Album)
