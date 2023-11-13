@@ -10,7 +10,7 @@ def create(request):
         if album_form.is_valid():
             try:
                 album_form.save()
-                return redirect(Album)
+                return redirect(Album())
             except:
                 pass
     else:
@@ -34,11 +34,11 @@ def update(request, id):
     album_form = AlbumForm(request.POST, instance=album)
     if album_form.is_valid():
         album_form.save()
-        return redirect(Album)
+        return redirect(album)
     return render(request, 'albums/update.html', {'album': album})
 
 
 def delete(request, id):
     album = Album.objects.get(id=id)
     album.delete()
-    return redirect(Album)
+    return redirect(album)
