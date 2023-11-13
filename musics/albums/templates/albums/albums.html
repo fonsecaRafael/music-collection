@@ -15,10 +15,7 @@
 					<tr>
 						<th></th><th></th>
 						<th class="ml-2">Album Name</th>
-<!--						<th>Artist</th>-->
-<!--						<th>Release</th>-->
 						<th>Edit</th>
-<!--						<th></th>-->
 					</tr>
 				</thead>
 
@@ -31,8 +28,6 @@
 								{{album.name}}
 							</a>
 						</td>
-<!--						<td class="align-middle">{{album.artist}}</td>-->
-<!--						<td class="align-middle">{{album.year.year}}</td>-->
 						<td>
 							<a href="{% url 'albums:update' album.id %}" class="btn btn-sm btn-link" role="button" aria-pressed="true">
 							<img alt="Pencil drawn" src="{% static 'img/edit.png' %}">
