@@ -10,8 +10,3 @@ urlpatterns = [
     path('update/<id>', update, name='update'),
     path('delete/<id>', delete, name='delete'),
 ]
-
-# from django.contrib import admin
-# urlpatterns = [
-# path('admin/', admin.site.urls),
-# ]
