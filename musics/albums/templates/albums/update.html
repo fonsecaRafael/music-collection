@@ -25,7 +25,16 @@
 
     <div class="form-group row mt-4">
         <label class="col-sm-3 col-form-label font-weight-bold">Artist:</label>
-        <input type="text" name="artist" id="id_artist" maxlength="32" required value="{{ album.artist }}" />
+            <select id="artist" name="artist" onChange="">
+              <option  value="">---SELECT---</option>
+              {% for artist in artists %}
+                {% if artist != album.artist %}
+               <option value="{{artist}}">{{artist}}</option>
+                {% else %}
+                <option value="{{artist}}" selected="selected">{{artist}}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
     </div>
 
     <div class="form-group row mt-4">
@@ -35,7 +44,7 @@
 
     <div class="form-group row">
         <div class="col-sm-4">
-        <a href="{% url 'albums:albums' %}"><button type="button" class="btn btn-primary">Albums</button></a>
+        <a href="{% url 'albums:album' album.id%}"><button type="button" class="btn btn-primary">Cancel</button></a>
         </div>
         <div class="col-sm-4">
         <button type="submit" class="btn btn-success">Update</button>

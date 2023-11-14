@@ -2,6 +2,15 @@ from django.shortcuts import render, redirect
 
 from musics.albums.forms import AlbumForm
 from musics.albums.models import Album
+from musics.artists.views import send_get
+
+
+def get_artist_list():
+    response = send_get(
+        'https://europe-west1-madesimplegroup-151616.cloudfunctions.net/artists-api-controller',
+        {'Authorization': 'Basic ZGV2ZWxvcGVyOlpHVjJaV3h2Y0dWeQ =='}
+    )
+    return [artist[0]['name'] for artist in response['json']]
 
 
 def create(request):
@@ -15,7 +24,9 @@ def create(request):
                 pass
     else:
         album_form = AlbumForm()
-    return render(request, 'albums/create.html', {'album_form': album_form})
+
+    artists = get_artist_list()
+    return render(request, 'albums/create.html', {'album_form': album_form, 'artists': artists})
 
 
 # Recovery
@@ -35,7 +46,9 @@ def update(request, id):
     if album_form.is_valid():
         album_form.save()
         return redirect(album)
-    return render(request, 'albums/update.html', {'album': album})
+
+    artists = get_artist_list()
+    return render(request, 'albums/update.html', {'album': album, 'artists': artists})
 
 
 def delete(request, id):
