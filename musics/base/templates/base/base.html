@@ -34,6 +34,11 @@
 		  <li class="nav-item">
 			<a class="nav-link text-white" href="{% url 'albums:albums' %}">Albums</a>
 		  </li>
+			{% if user.is_staff %}
+			<li>
+				<a class="nav-link text-white" href="{% url 'base:users' %}">Users</a>
+			</li>
+			{% endif %}
 		</ul>
 		  {% if user.is_authenticated %}
 		  <a class="btn btn-danger" href="{% url 'logout' %}">Logout</a>
