@@ -24,15 +24,19 @@ def users(request):
     return redirect('base:home')
 
 
-def upgrade(request, id):
+def upgrade(request, user_id):
     if only_admin_should_pass(request):
-        user = User.objects.get(id=id)
+        user = User.objects.get(id=user_id)
         user.is_staff = True
         user.save()
         return redirect('base:users')
     return redirect('base:home')
 
 
-
 def downgrade(request, user_id):
-    return render(request, 'base/sign_up.html')
+    if only_admin_should_pass(request):
+        user = User.objects.get(id=user_id)
+        user.is_staff = False
+        user.save()
+        return redirect('base:users')
+    return redirect('base:home')
