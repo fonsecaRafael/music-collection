@@ -5,17 +5,13 @@ from musics.django_assertions import assert_contains
 
 
 @pytest.fixture
-def response(client):
-    return client.get(reverse('artists:artist', args=('15',)))
+def resp_artist(logged_client):
+    return logged_client.get(reverse('artists:artist', args=('15',)))
 
 
-def test_status_code(response):
-    assert response.status_code == 200
+def test_status_code(resp_artist):
+    assert resp_artist.status_code == 200
 
 
-def test_title(response):
-    assert_contains(response, f'<title>MC - Detais</title>')
-
-
-def test_artist_name(response):
-    assert_contains(response, f'Aqui irá aparecer o nome do artista')
+def test_title(resp_artist):
+    assert_contains(resp_artist, f'<title>MC - Details</title>')

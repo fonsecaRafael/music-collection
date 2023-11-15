@@ -3,8 +3,8 @@ from django.urls import reverse
 
 
 @pytest.fixture
-def response(client):
-    return client.get(reverse('albums:create_album'))
+def response(logged_client):
+    return logged_client.get(reverse('albums:create'))
 
 
 def test_status_code(response):
