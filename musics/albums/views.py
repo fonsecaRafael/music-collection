@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from musics.albums.forms import AlbumForm
@@ -13,6 +14,7 @@ def get_artist_list():
     return [artist[0]['name'] for artist in response['json']]
 
 
+@login_required()
 def create(request):
     if request.method == "POST":
         album_form = AlbumForm(request.POST)
@@ -29,17 +31,19 @@ def create(request):
     return render(request, 'albums/create.html', {'album_form': album_form, 'artists': artists})
 
 
-# Recovery
+@login_required()
 def albums(request):
     albums = Album.objects.all()
     return render(request, 'albums/albums.html', context={'albums': albums})
 
 
+@login_required()
 def album(request, album_id):
     album = Album.objects.get(id=album_id)
     return render(request, 'albums/album.html', context={'album': album})
 
 
+@login_required()
 def update(request, id):
     album = Album.objects.get(id=id)
     album_form = AlbumForm(request.POST, instance=album)
@@ -51,6 +55,7 @@ def update(request, id):
     return render(request, 'albums/update.html', {'album': album, 'artists': artists})
 
 
+@login_required()
 def delete(request, id):
     album = Album.objects.get(id=id)
     album.delete()
