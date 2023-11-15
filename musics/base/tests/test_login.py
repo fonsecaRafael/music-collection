@@ -2,7 +2,7 @@ import pytest
 from django.urls import reverse
 from model_mommy import mommy
 
-from musics.django_assertions import assert_contains
+from musics.django_assertions import assert_contains, assert_not_contains
 
 
 @pytest.fixture
@@ -47,3 +47,24 @@ def test_btn_login(resp_home):
 
 def test_link_login(resp_home):
     assert_contains(resp_home, reverse('login'))
+
+
+@pytest.fixture
+def resp_home_logged(logged_client):
+    return logged_client.get(reverse('base:home'))
+
+
+def test_btn_login_unavailable(resp_home_logged):
+    assert_not_contains(resp_home_logged, 'Login')
+
+
+def test_link_login_unavailable(resp_home_logged):
+    assert_not_contains(resp_home_logged, reverse('login'))
+
+
+def test_btn_logout_available(resp_home_logged):
+    assert_contains(resp_home_logged, 'Logout')
+
+
+def test_link_logout_available(resp_home_logged):
+    assert_contains(resp_home_logged, reverse('logout'))
