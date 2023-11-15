@@ -34,8 +34,10 @@
     <a href="{% url 'albums:update' album.id %}" class="btn btn-sm btn-link" role="button" aria-pressed="true">
     <img alt="Pencil drawn" src="{% static 'img/edit.png' %}"></a>
 
+    {% if user.is_staff %}
     <a id="delete-album" href="{% url 'albums:delete' album.id %}" role="button" class="btn btn-sm" data-toggle="modal" data-target="#delete-album-modal">
     <img alt="Drawn trash can" src="{% static 'img/delete.png' %}"></a>
+    {% endif %}
 </div>
 
 <div class="modal fade" id="delete-album-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
