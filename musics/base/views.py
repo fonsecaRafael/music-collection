@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 
+from musics.base.forms import UserForm
 from musics.base.models import User
 
 
@@ -8,7 +9,18 @@ def home(request):
 
 
 def sign_up(request):
-    return render(request, 'base/sign_up.html')
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            user = User.objects.create_user(
+                full_name=form.cleaned_data['full_name'],
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password'])
+            user.save()
+            return redirect('login')
+
+    form = UserForm()
+    return render(request, 'base/sign_up.html', {'form': form})
 
 
 def only_admin_should_pass(request):
