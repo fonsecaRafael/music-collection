@@ -6,13 +6,111 @@
 {% block description %}Music Collection Home page{% endblock description %}
 
 {% block body %}
-<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<h3 class="text-center">
-					HOME
-				</h3>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 mt-2">
+			<div class="jumbotron">
+				<h2>
+					Welcome to Music-Collection!!!
+				</h2>
+				<p>
+					<span><br>This application maintains two types of users in its database, the common user and the a</span>dministrators <span>.</span>
+				</p>
+				<p>
+					<span>It queries an API that returns the artist's name and artist's Twitter @.</span>
+				</p>
+				<p>
+					The common user should be able to register and change albums for available artists.
+				</p>
+				<p>
+					Administrators can do everything that regular users can and additionally, they can delete albums.<br>Administrators can also make a user an administrator
+				</p>
+
+				<p>
+					<a class="btn btn-primary btn-large" href="{% url 'base:signup' %}">Sign up!</a>
+				</p>
+			</div>
+
+			<h2>Technologies used:</h2>
+			<div class="carousel slide" id="carousel-389134">
+
+				<ol class="carousel-indicators">
+					<li data-slide-to="0" data-target="#carousel-389134"  class="active"></li>
+					<li data-slide-to="1" data-target="#carousel-389134"></li>
+					<li data-slide-to="2" data-target="#carousel-389134"></li>
+					<li data-slide-to="3" data-target="#carousel-389134"></li>
+					<li data-slide-to="4" data-target="#carousel-389134"></li>
+					<li data-slide-to="5" data-target="#carousel-389134"></li>
+					<li data-slide-to="6" data-target="#carousel-389134"></li>
+				</ol>
+
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<a href="https://www.djangoproject.com/" target="_blank"><img class="d-block w-100" alt="Django Web Framework" src="{% static 'img/stack/django.png' %}"></a>
+						<div class="carousel-caption">
+							<h3>
+								Framework Back End
+							</h3>
+						</div>
+					</div>
+
+					<div class="carousel-item">
+						<a href="https://getbootstrap.com/" target="_blank"><img class="d-block w-100" alt="Bootstrap Frontend Framework" src="{% static 'img/stack/bootstrap.png' %}"></a>
+						<div class="carousel-caption">
+							<h3 class="text-dark">
+								Framework Front End
+							</h3>
+						</div>
+					</div>
+
+					<div class="carousel-item">
+						<a href="https://www.layoutit.com/es" target="_blank"><img class="d-block w-100" alt="Layout it Front End Framework" src="{% static 'img/stack/layoutit.png' %}"></a>
+						<div class="carousel-caption">
+							<h3>
+								Framework Front End
+							</h3>
+						</div>
+					</div>
+
+					<div class="carousel-item">
+						<a href="https://www.postgresql.org/" target="_blank"><img class="d-block w-100" alt="PostgreSql" src="{% static 'img/stack/postgresql.png' %}"></a>
+						<div class="carousel-caption">
+							<h3>
+								Data base
+							</h3>
+						</div>
+					</div>
+
+					<div class="carousel-item">
+						<a href="https://docs.pytest.org/en/7.4.x/" target="_blank"><img class="d-block w-100" alt="Pytest" src="{% static 'img/stack/pytest.jpg' %}"></a>
+						<div class="carousel-caption">
+							<h3 class="text-dark">
+								Python library that helps with application testing
+							</h3>
+						</div>
+					</div>
+
+					<div class="carousel-item">
+						<a href="https://model-mommy.readthedocs.io/en/latest/basic_usage.html" target="_blank"><img class="d-block w-100" alt="Model-Mommy" src="{% static 'img/stack/model-mommy.png' %}"></a>
+						<div class="carousel-caption">
+							<h3>
+								Python library that helps with application database testing
+							</h3>
+						</div>
+					</div>
+
+					<div class="carousel-item">
+						<a href="https://pypi.org/project/python-decouple/" target="_blank"><img class="d-block w-100" alt="python-decouple" src="{% static 'img/stack/python-decouple.png' %}"></a>
+						<div class="carousel-caption">
+							<h3 class="text-dark">
+								Python library that helps in configuring different environments
+							</h3>
+						</div>
+					</div>
+
+				</div> <a class="carousel-control-prev" href="#carousel-389134" data-slide="prev"><span class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span></a> <a class="carousel-control-next" href="#carousel-389134" data-slide="next"><span class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>
 			</div>
 		</div>
 	</div>
+</div>
 {% endblock body %}
