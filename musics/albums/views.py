@@ -48,13 +48,14 @@ def album(request, album_id):
 
 
 @login_required()
-@require_http_methods(["POST"])
+@require_http_methods(["GET", "POST"])
 def update(request, id):
     album = Album.objects.get(id=id)
-    album_form = AlbumForm(request.POST, instance=album)
-    if album_form.is_valid():
-        album_form.save()
-        return redirect(album)
+    if request.method == "POST":
+        album_form = AlbumForm(request.POST, instance=album)
+        if album_form.is_valid():
+            album_form.save()
+            return redirect(album)
 
     artists = get_artist_list()
     return render(request, 'albums/update.html', {'album': album, 'artists': artists})

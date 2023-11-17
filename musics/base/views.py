@@ -44,9 +44,9 @@ def users(request):
 
 @login_required()
 @require_http_methods(["POST"])
-def upgrade(request, user_id):
+def upgrade(request):
     if only_admin_should_pass(request):
-        user = User.objects.get(id=user_id)
+        user = User.objects.get(id=request.POST['id_user_up'])
         user.is_staff = True
         user.save()
         return redirect('base:users')
@@ -55,9 +55,9 @@ def upgrade(request, user_id):
 
 @login_required()
 @require_http_methods(["POST"])
-def downgrade(request, user_id):
+def downgrade(request):
     if only_admin_should_pass(request):
-        user = User.objects.get(id=user_id)
+        user = User.objects.get(id=request.POST['id_user_del'])
         user.is_staff = False
         user.save()
         return redirect('base:users')

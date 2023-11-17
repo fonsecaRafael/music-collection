@@ -38,15 +38,23 @@
         </td>
 
         <td>
-            <a href="{% url 'base:upgrade' user.id %}" class="btn btn-sm btn-link" role="button" aria-pressed="true">
-            <img alt="Upgrade" src="{% static 'img/upgrade.png' %}">
-            </a>
+            <form method="post" action="{% url 'base:upgrade' %}">
+                {% csrf_token %}
+                <input type="hidden" id="id_user_up" name="id_user_up" value="{{user.id}}">
+                <button type="submit" class="btn btn-sm btn-link">
+                    <img alt="Upgrade" src="{% static 'img/upgrade.png' %}">
+                </button>
+            </form>
         </td>
 
         <td>
-            <a href="{% url 'base:downgrade' user.id %}" class="btn btn-sm btn-link" role="button" aria-pressed="true">
-            <img alt="Downgrade" src="{% static 'img/downgrade.png' %}">
-            </a>
+            <form method="post" action="{% url 'base:downgrade' %}">
+                {% csrf_token %}
+                <input type="hidden" id="id_user_del" name="id_user_del" value="{{user.id}}">
+                <button type="submit" class="btn btn-sm btn-link">
+                    <img alt="downgrade" src="{% static 'img/downgrade.png' %}">
+                </button>
+            </form>
         </td>
     </tr>
 {% endfor %}
