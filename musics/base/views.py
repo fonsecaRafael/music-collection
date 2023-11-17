@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
@@ -20,8 +21,15 @@ def sign_up(request):
                 full_name=form.cleaned_data['full_name'],
                 username=form.cleaned_data['username'],
                 password=form.cleaned_data['password'])
-            user.save()
-            return redirect('login')
+            try:
+                user.save()
+                messages.success(request, 'Successfully registered user.')
+                return redirect('login')
+            except:
+                messages.error(request, 'Unknown error, please contact the developer.')
+        else:
+            for key, error in form.errors.items():
+                messages.error(request, f'{key.capitalize()}: {error[0]}')
 
     form = UserForm()
     return render(request, 'base/sign_up.html', {'form': form})

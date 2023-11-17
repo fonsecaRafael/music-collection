@@ -27,7 +27,7 @@ def create(request):
                 messages.success(request, 'Album created successfully.')
                 return redirect(Album())
             except:
-                pass
+                messages.error(request, 'Unknown error, please contact the developer.')
         else:
             for key, error in form.errors.items():
                 messages.error(request, f'{key.capitalize()}: {error[0]}')
@@ -61,8 +61,15 @@ def update(request, id):
     if request.method == "POST":
         album_form = AlbumForm(request.POST, instance=album)
         if album_form.is_valid():
-            album_form.save()
-            return redirect(album)
+            try:
+                album_form.save()
+                messages.success(request, 'Album updated successfully.')
+                return redirect(album)
+            except:
+                messages.error(request, 'Unknown error, please contact the developer.')
+        else:
+            for key, error in album_form.errors.items():
+                messages.error(request, f'{key.capitalize()}: {error[0]}')
 
     artists = get_artist_list()
     return render(request, 'albums/update.html', {'album': album, 'artists': artists})
@@ -72,5 +79,10 @@ def update(request, id):
 @require_http_methods(["POST"])
 def delete(request, id):
     album = Album.objects.get(id=id)
-    album.delete()
+    try:
+        album.delete()
+        messages.success(request, 'Album deleted successfully.')
+        return redirect(album)
+    except:
+        messages.error(request, 'Unknown error, please contact the developer.')
     return redirect(album)
