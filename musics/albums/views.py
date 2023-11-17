@@ -20,19 +20,24 @@ def get_artist_list():
 @require_http_methods(["GET", "POST"])
 def create(request):
     if request.method == "POST":
-        album_form = AlbumForm(request.POST)
-        if album_form.is_valid():
+        form = AlbumForm(request.POST)
+        if form.is_valid():
             try:
-                album_form.save()
+                form.save()
                 messages.success(request, 'Album created successfully.')
                 return redirect(Album())
             except:
                 pass
+        else:
+            for key, error in form.errors.items():
+                messages.error(request, f'{key.capitalize()}: {error[0]}')
+            return render(request, 'albums/create.html', {'album_form': form, 'artists': get_artist_list()})
+
     else:
-        album_form = AlbumForm()
+        form = AlbumForm()
 
     artists = get_artist_list()
-    return render(request, 'albums/create.html', {'album_form': album_form, 'artists': artists})
+    return render(request, 'albums/create.html', {'album_form': form, 'artists': artists})
 
 
 @login_required()
