@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
@@ -23,6 +24,7 @@ def create(request):
         if album_form.is_valid():
             try:
                 album_form.save()
+                messages.success(request, 'Album created successfully.')
                 return redirect(Album())
             except:
                 pass
