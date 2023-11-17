@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.views.decorators.http import require_http_methods
 
 from musics.albums.forms import AlbumForm
 from musics.albums.models import Album
@@ -15,6 +16,7 @@ def get_artist_list():
 
 
 @login_required()
+@require_http_methods(["GET", "POST"])
 def create(request):
     if request.method == "POST":
         album_form = AlbumForm(request.POST)
@@ -32,18 +34,21 @@ def create(request):
 
 
 @login_required()
+@require_http_methods(["GET"])
 def albums(request):
     albums = Album.objects.all()
     return render(request, 'albums/albums.html', context={'albums': albums})
 
 
 @login_required()
+@require_http_methods(["GET"])
 def album(request, album_id):
     album = Album.objects.get(id=album_id)
     return render(request, 'albums/album.html', context={'album': album})
 
 
 @login_required()
+@require_http_methods(["POST"])
 def update(request, id):
     album = Album.objects.get(id=id)
     album_form = AlbumForm(request.POST, instance=album)
@@ -56,6 +61,7 @@ def update(request, id):
 
 
 @login_required()
+@require_http_methods(["POST"])
 def delete(request, id):
     album = Album.objects.get(id=id)
     album.delete()

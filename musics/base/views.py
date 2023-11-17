@@ -1,13 +1,17 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.views.decorators.http import require_http_methods
 
 from musics.base.forms import UserForm
 from musics.base.models import User
 
 
+@require_http_methods(["GET"])
 def home(request):
     return render(request, 'base/home.html')
 
 
+@require_http_methods(["GET", "POST"])
 def sign_up(request):
     if request.method == "POST":
         form = UserForm(request.POST)
@@ -29,6 +33,8 @@ def only_admin_should_pass(request):
     return False
 
 
+@login_required()
+@require_http_methods(["GET"])
 def users(request):
     if only_admin_should_pass(request):
         users = User.objects.exclude(id=request.user.id)
@@ -36,6 +42,8 @@ def users(request):
     return redirect('base:home')
 
 
+@login_required()
+@require_http_methods(["POST"])
 def upgrade(request, user_id):
     if only_admin_should_pass(request):
         user = User.objects.get(id=user_id)
@@ -45,6 +53,8 @@ def upgrade(request, user_id):
     return redirect('base:home')
 
 
+@login_required()
+@require_http_methods(["POST"])
 def downgrade(request, user_id):
     if only_admin_should_pass(request):
         user = User.objects.get(id=user_id)
