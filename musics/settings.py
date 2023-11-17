@@ -34,8 +34,9 @@ AUTH_USER_MODEL = 'base.User'
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/artists/'
 LOGOUT_REDIRECT_URL = '/'
-# Application definition
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
