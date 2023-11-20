@@ -12,6 +12,8 @@ psycopg2-binary = "*"
 dj-database-url = "*"
 django-debug-toolbar = "*"
 requests = "*"
+gunicorn = "*"
+whitenoise = "*"
 
 [dev-packages]
 flake8 = "*"
