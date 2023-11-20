@@ -144,4 +144,4 @@ MESSAGE_TAGS = {
         messages.ERROR: 'alert-danger',
  }
 
-CSRF_TRUSTED_ORIGINS = ['https://music-collection-production.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = ['https://music-collection-production.up.railway.app']
