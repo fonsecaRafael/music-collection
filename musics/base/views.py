@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
 
+from musics.albums.models import Album
 from musics.base.forms import UserForm
 from musics.base.models import User
 
@@ -14,6 +15,9 @@ def home(request):
 
 @require_http_methods(["GET", "POST"])
 def sign_up(request):
+    if request.user.is_authenticated:
+        return redirect(Album())
+
     if request.method == "POST":
         form = UserForm(request.POST)
         if form.is_valid():
