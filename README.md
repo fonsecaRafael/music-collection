@@ -1,7 +1,9 @@
 # music-collection
-A small application built with Django Framework, should be able to store artist names, their albums and songs
+A small application built with Django Framework, should be able to store artist names, their albums and songs  
 
-How to run this project locally? (Windows)
+See it [running!!!](https://music-collection-production.up.railway.app/)
+
+Or if you prefer run this project locally? (Windows)
 
 
 
